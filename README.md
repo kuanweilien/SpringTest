@@ -55,3 +55,15 @@ mvn spring-boot:run
 mvn package
 java -jar target/myproject-0.0.1-SNAPSHOT.jar
 ```
+
+# Enable Https
+* JKS 
+```
+keytool -genkeypair -alias {aliasname} -keyalg RSA -keysize 4096 -storetype JKS -keystore {storename}.jks -validity 3650 -storepass {password}
+```
+
+* PKCS12 
+```
+keytool -genkeypair -alias {aliasname} -keyalg RSA -keysize 4096 -storetype PKCS12 -keystore {storename}.p12 -validity 3650 -storepass {password}
+```
+

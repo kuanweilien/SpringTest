@@ -1,60 +1,75 @@
 package com.example.demo;
 
-import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.time.LocalDate;
+import java.time.Period;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "tb_user")
 public class UserModel{
     @Id
-    @GeneratedValue
-    private Long _id;
-    private String user_name;
+    @SequenceGenerator(
+        name = "tb_user_seq",
+        sequenceName = "tb_user_seq",
+        allocationSize = 100
+    )
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "tb_user_seq"
+    )
+    @Column(
+        name = "id",
+        updatable = false
+    )
+    private Long id;
+    @Column(name = "user_name", nullable = false)
+    private String userName;
+    @Column(name = "sex")
     private Integer sex;
-    private Date birthday;
+    @Transient
+    private Integer age;
+    @Column(name = "birthday")
+    private LocalDate birthday;
 
     public UserModel(){}
 
-    public UserModel(Long Id,
-                    String user_name,
+    public UserModel(
+                    String userName,
                     Integer sex,
-                    Date birthday){
-        this._id = Id;
-        this.user_name = user_name;
+                    LocalDate birthday){
+        this.userName = userName;
         this.sex = sex;
         this.birthday = birthday;
     }
 
     public Long getId(){
-        return _id;
+        return id;
     }
-    @Column(name = "user_name", nullable = false)
-    public String getUser_name(){
-        return user_name;
+    
+    public String getUserName(){
+        return userName;
     }
-    @Column(name = "sex")
+    
     public Integer getSex(){
         return sex;
     }
-    @Column(name = "birthday")
-    public Date getBirthday(){
+    public Integer getAge(){
+        return Period.between(this.birthday, LocalDate.now()).getYears();
+    }
+    public LocalDate getBirthday(){
         return birthday;
     }
 
     public void setId(Long Id){
-        this._id = Id;
+        this.id = Id;
     }
-    public void setUser_name(String user_name){
-        this.user_name = user_name;
+    public void setUserName(String userName){
+        this.userName = userName;
     }
     public void setSex(Integer sex){
         this.sex = sex;
     }
-    public void setBirthday(Date birthday){
+    public void setBirthday(LocalDate birthday){
         this.birthday = birthday;
     }
 

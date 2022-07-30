@@ -1,0 +1,2 @@
+services.protocol={https/http}
+services.host={hostname}

@@ -34,3 +34,6 @@ build/
 
 
 application.properties
+webconfig.properties
+*.jks
+*.p12

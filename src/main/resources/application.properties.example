@@ -1,0 +1,43 @@
+# ===============================
+# = DATA SOURCE
+# ===============================
+# Set here configurations for the database connection
+spring.datasource.url=jdbc:mariadb://{host}/{database}
+spring.datasource.username={username}
+spring.datasource.password={password}
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+
+# ===============================
+# = JPA / HIBERNATE
+# ===============================
+# Show or not log for each sql query
+spring.jpa.show-sql=true
+# Hibernate ddl auto (create, create-drop, update): with "create-drop" the database
+# schema will be automatically created afresh for every start of application
+spring.jpa.hibernate.ddl-auto=create-drop
+
+# Naming strategy
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MariaDB103Dialect
+
+# ===============================
+# = SSL
+# ===============================
+server.error.include-message=always
+server.ssl.key-store: {storename}.p12
+server.ssl.key-store-password: {password}
+server.ssl.key-store-type: pkcs12
+server.ssl.key-alias: {aliasname}
+server.ssl.key-password: {password}
+server.port: {port}
+
+
+# ===============================
+# = Google Mail
+# ===============================
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username={username}
+spring.mail.password={password}
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.smtp.starttls.required=true
